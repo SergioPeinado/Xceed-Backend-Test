@@ -1,0 +1,37 @@
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: ./Dockerfile
+    volumes:
+      - ../:/var/www/
+    ports:
+      - '8000:80'
+    networks:
+      - network
+  php:
+    build:
+      context: ./php
+      dockerfile: ./Dockerfile
+    environment:
+      APP_ENV: dev
+      XDEBUG_CLIENT_HOST: host.docker.internal
+      XDEBUG_CLIENT_PORT: 9000
+      PHP_IDE_CONFIG: serverName=localhost
+      TIMEZONE: Europe/Madrid
+    volumes:
+      - ../:/var/www/
+    networks:
+      - network
+
+  redis:
+    build:
+      context: ./redis
+      dockerfile: ./Dockerfile
+    ports:
+      - "6379:6379"
+    networks:
+      - network
+
+networks:
+  network:

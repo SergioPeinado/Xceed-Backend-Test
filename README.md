@@ -3,6 +3,24 @@
 ## Description
 We want you to implement a REST API that, given a twitter username and a count N, returns the last N tweets in uppercase. We also want to get a cache layer of these tweets in order to avoid hitting Twitter's API (which let's imagine is very expensive) twice for the same username given a T time.
 
+## How to init
+To start the project run the following commands:
+```
+make init
+```
+If you don't have `make` installed on your system, you can open the `Makefile` and view the commands executed by the `init` command, then run them manually in the terminal.
+
+## Testing
+To run the test suite, execute the following command:
+```
+make run-test
+```
+
+To view the application's coverage, execute:
+```
+make run-test-coverage
+```
+This will generate a `coverage` folder at the root of the project. Inside the folder, open the `index.html` file with a web browser to view the results.
 ## Example 
 
 Given these last two tweets from Jack Dorsey:

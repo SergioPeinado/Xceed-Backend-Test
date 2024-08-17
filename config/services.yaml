@@ -10,6 +10,13 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            App\XceedTweetConverter\Domain\Repository\TweetRepository $inMemoryRepository: '@App\XceedTweetConverter\Infrastructure\Persistence\InMemory\InMemoryTweetRepository'
+            App\XceedTweetConverter\Domain\Repository\TweetRepository $redisRepository: '@App\XceedTweetConverter\Infrastructure\Persistence\Redis\RedisTweetRepository'
+
+    Predis\Client:
+        arguments:
+            $parameters: '%env(REDIS_URL)%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -17,7 +24,7 @@ services:
         resource: '../src/'
         exclude:
             - '../src/DependencyInjection/'
-            - '../src/Domain/'
+            - '../src/XceedTweetConverter/Domain/{Exception, Model, Repository}/'
             - '../src/Kernel.php'
 
     # add more service definitions when explicit configuration is needed

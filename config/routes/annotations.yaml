@@ -1,5 +1,5 @@
 controllers:
-    resource: ../../src/Application/Controller/
+    resource: ../../src/XceedTweetConverter/Infrastructure/Api/EntryPoint/Controller
     type: annotation
 
 kernel:
